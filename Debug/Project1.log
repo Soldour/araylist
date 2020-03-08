@@ -1,0 +1,4 @@
+﻿  list.c
+C:\Users\MAc\Videos\Projects\c\arrayList\Project1\Project1\list.c(51,11): warning C4129: 'N': unrecognized character escape sequence
+C:\Users\MAc\Videos\Projects\c\arrayList\Project1\Project1\list.c(127,51): warning C4020: 'insertElement': too many actual parameters
+  Project1.vcxproj -> C:\Users\MAc\Videos\Projects\c\arrayList\Project1\Debug\Project1.exe
