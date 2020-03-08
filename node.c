@@ -20,10 +20,7 @@ void insertElement(struct node* head, int value, int inserting_index, int bound)
 	{
 
 	
-	if (inserting_index >= bound) {
-
-		printf("\n the insertign index must be lessthan %d and greater than 1", bound);
-	}else {
+	if (inserting_index < bound && inserting_index>0) {
 		struct node* new_node;                   /////////\\\\\\\\\\\\\\\\\\//////\\\\\\\\\\\\\\\\\\\\////////////////////
 		struct node* track = head;              // create two same node that will track the head node ( track and follow)
 		struct node* follow = head;             // new node will take the data feild of value and will pint to null  
@@ -47,10 +44,18 @@ void insertElement(struct node* head, int value, int inserting_index, int bound)
 		while (track != NULL) {
 			track = track->next;
 		}
+	} else  {
+
+		printf("\n the insertign index must be lessthan %d and greater than 1", bound);
+		break;
 	}
+
+
+
 	loop++;
-	} while (loop<3);
+	} while (loop>3);
 }
+
 
 
 void ending(struct node* head, int value)
