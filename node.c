@@ -1,124 +1,157 @@
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h> 
 
-struct node {
-
-	int data;
-	struct node* next;
-};
-struct node* begning(struct node* head, int value)
+ struct node
 {
-	struct node* new_node;
-	new_node = malloc(sizeof(struct node));
-	new_node->data = value;
-	new_node->next = head;
-	return new_node;
-}
-void insertElement(struct node* head, int value, int inserting_index, int bound)
-{  
-	int loop = 0;
-	do
-	{
+    int data;
+    struct node* next;
 
-	
-	if (inserting_index < bound && inserting_index>0) {
-		struct node* new_node;                   /////////\\\\\\\\\\\\\\\\\\//////\\\\\\\\\\\\\\\\\\\\////////////////////
-		struct node* track = head;              // create two same node that will track the head node ( track and follow)
-		struct node* follow = head;             // new node will take the data feild of value and will pint to null  
-		new_node = malloc(sizeof(struct node)); // the count will start form 2 because the starting node functionis 
-		new_node->data = value;                 //different
-		new_node->next = NULL;                  //
-		int count = 2;
-
-		while (count <= inserting_index)
-		{
-			follow = follow->next;
-			track = track->next;
-
-			count++;
-		}
-
-		new_node->next = track->next;
-		follow->next = new_node;
+} *head;
 
 
-		while (track != NULL) {
-			track = track->next;
-		}
-	} else  {
-
-		printf("\n the insertign index must be lessthan %d and greater than 1", bound);
-		break;
-	}
-
-
-
-	loop++;
-	} while (loop>3);
-}
-
-
-
-void ending(struct node* head, int value)
+void creatLinkList(int n)
 {
-	struct node* new_node;                   // creat new node 
-	struct node* track = head;               // the track node will follow the head node untill it 
-	new_node = malloc(sizeof(struct node));  // reaches the point where it ponints to null
-	new_node->data = value;
-	new_node->next = NULL;
-	while (track->next != NULL)
-	{
-		track = track->next;     // afther the pointer pints to null 
-	}                            // it will scape fro the loop 
-	track->next = new_node;      // asing the pointer where it was pointing to null previously to 
-	                             //new the new node 
-}
+    struct node* current, * temp;
+    int value, i;
 
+    head = malloc(sizeof(struct node));
 
+    printf("Enter data of node 1: ");
+    scanf_s("%d", &value);
 
-int get_Element(struct node* head, int index_of_element)
-{
+    head->data = value; // Link data field with data
+    head->next = NULL; // Link address field to NULL
 
+    temp = head;
 
-	struct node* node_of_index = head;  // creat a new node and set it to the head node 
+    for (i = 2; i <= n; i++)
+    {
+        current = malloc(sizeof(struct node));
 
-	int count = 0;
-	while (node_of_index != NULL)    // the count variale will control the looping 
-	{
-		if (count == index_of_element)         //when count becomes equal to the index where the element is 
-			return(node_of_index->data);       // needed to it will retern the data(value ) that the node holds 
-	
-		count++;                       
-		node_of_index = node_of_index->next;    // here the node_of_index will jump to the next node 
-		                                        //till it reaches where the pointer points to NULL 
+    
 
-	}
+        printf("Enter data of node %d: ", i);
+        scanf_s("%d", &value);
 
+        current->data = value; // Link data field of newNode
+        current->next = NULL; // The newNode should point to nothing
 
+        temp->next = current; // Link previous node i.e. temp to the newNode
+        temp = temp->next;
+    }
 
 }
 
-
-//))))
-//))))
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-/////    unified function that will manipulate the node accordingly ////////////////////////////////____
-/////     ////////////////////////////////////////////////////////////////////////
-/////////////////         //)
-/////////////oooo		   //)
-//////////////  oo		    //)
-//////////////	  oo	   //)
-////////////////////////////)
-//////////////
-//////////////
-//////////////
-
-struct node* unifiedeNode_manipulation(struct node* head, int value, int inserting_index)
+_Bool get_Element_ByValue(int elemnt)
 {
 
 
+    struct node * node_of_index = head;  // create a new node and set it to the head node 
+
+    int count = 0;
+
+    _Bool exist;
+
+    while (node_of_index != NULL)    // the count variale will control the looping 
+    {
+
+        exist = node_of_index->data == elemnt;
+
+        if (exist)
+            printf("\nthe element %d is deleted from index %d\n", elemnt, count);
+
+        node_of_index = node_of_index->next;
+
+        count++;
+
+    }return true;
+
+    return false;
+}
+
+void deletAllElement(int  key)
+{
+
+    struct node * current, * follow;
+
+    int count = 0;
+
+    while (head != NULL && head->data == key)
+    {
+        follow = head;
+        head = head->next;
+        free(follow);
+        count++;
+    }
+
+    follow = NULL;
+    current = head;
+    bool  exist;
+
+    while (current != NULL)
+    {
+
+        exist = current->data == key;
+
+        if (exist)
+
+        {
+
+            if (exit)
+            {
+                count++;
+            }
+            if (follow != NULL) {
+
+                follow->next = current->next;
+            }
 
 
+            free(current);
+            current = follow->next;
+
+            printf("\n the node at index %d\n", count);
+
+        }
+        else
+        {
+
+            follow = current;
+            current = current->next;
 
 
+        }
+    }
 
+}
+
+void deletElemntByIndex(int index)
+{
+    struct node* indexing_Node = head;
+
+    int count = 2;
+
+    while (count <= index)
+    {
+        indexing_Node = indexing_Node->next;
+        count++;
+
+    }
+    indexing_Node->next = indexing_Node->next->next;
+    printf("\nThe element at index %d is deleted\n", index);
+
+}
+
+void print()
+{
+    struct node* current;
+
+    current = head;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->data);     // print the data field of the struct 
+        current = current->next;  //jump the current node to the next         
+    }
+    printf("\n");
 }
