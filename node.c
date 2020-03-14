@@ -9,6 +9,19 @@
 
 } *head;
 
+ void printList()
+ {
+     struct node* current;
+
+     current = head;
+     while (current != NULL)
+     {
+         printf("%d-> ", current->data);     // print the data field of the struct 
+         current = current->next;  //jump the current node to the next         
+     }
+     printf("NULL\n");
+ }
+
 
 void creatLinkList(int n)
 {
@@ -72,6 +85,7 @@ _Bool get_Element_ByValue(int elemnt)
 
 void deletAllElement(int  key)
 {
+    bool  exist;
 
     struct node * current, * follow;
 
@@ -87,7 +101,7 @@ void deletAllElement(int  key)
 
     follow = NULL;
     current = head;
-    bool  exist;
+
 
     while (current != NULL)
     {
@@ -98,7 +112,7 @@ void deletAllElement(int  key)
 
         {
 
-            if (exit)
+            while (current->data == key)
             {
                 count++;
             }
@@ -112,18 +126,19 @@ void deletAllElement(int  key)
             current = follow->next;
 
             printf("\n the node at index %d\n", count);
-
+            printList();
         }
         else
         {
 
             follow = current;
             current = current->next;
-
+            printf("the element does not belong to this node\n");
+            break;
 
         }
     }
-
+    
 }
 
 void deletElemntByIndex(int index)
@@ -143,15 +158,29 @@ void deletElemntByIndex(int index)
 
 }
 
-void print()
-{
-    struct node* current;
 
-    current = head;
-    while (current != NULL)
-    {
-        printf("%d -> ", current->data);     // print the data field of the struct 
-        current = current->next;  //jump the current node to the next         
+
+_Bool deletElemntByKey(int key)
+{
+    struct node* indexing_Node = head;
+
+    int count = 0;
+    if (indexing_Node->data == key) {
+        printf("\nthe element is at the head so no can do :\n");
+        return false;
+
     }
-    printf("\n");
+
+    else {
+        while (indexing_Node->next->data != key)
+        {
+            indexing_Node = indexing_Node->next;
+            count++;
+
+        }
+        indexing_Node->next = indexing_Node->next->next;
+        printf("the value %d is deleted form the list\n", key);
+
+    }
+    printList();
 }
