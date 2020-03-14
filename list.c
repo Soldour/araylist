@@ -30,9 +30,7 @@ int main()
 	head=begning( 95858);
 	printList();
 	insertElement( 900,n);	
-	deletElemntByIndex(2);
-	printList();
 	deletAllElement(33);     //calling function that will delete all node with the matching data field as inputt
-	printList();
+	
 
 }
