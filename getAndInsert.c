@@ -25,7 +25,7 @@ struct node* begning(int value)
 struct node* insertElement(int value,  int bound)
 {
 	int inserting_index;
-	printf("\nInput the index to insert thee value: \n");
+	printf("\nInput the index to insert thee value\n");
 	scanf_s("%d", &inserting_index);
 	if (inserting_index == 0)
 	{
@@ -100,7 +100,20 @@ struct node* insertElement(int value,  int bound)
 
 
 
-
+//void ending(int value)
+//{
+//	struct node* new_node;                   // creat new node 
+//	struct node* track = head;               // the track node will follow the head node untill it 
+//	new_node = malloc(sizeof(struct node));  // reaches the point where it ponints to null
+//	new_node->data = value;
+//	new_node->next = NULL;
+//	while (track->next != NULL)
+//	{
+//		track = track->next;     // afther the pointer pints to null 
+//	}                            // it will scape fro the loop 
+//	track->next = new_node;      // asing the pointer where it was pointing to null previously to 
+//								 //new the new node 
+//}
 
 
 
@@ -121,6 +134,7 @@ int get_Element(int index_of_element)
 												//till it reaches where the pointer points to NULL 
 
 	}
+
 
 
 
